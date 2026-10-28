@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#123A7A">
+  <title>喔喔游戏厅</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="nav">
+      <a class="nav-back" href="#home" hidden>‹ 返回</a>
+      <span class="nav-title">喔喔游戏厅</span>
+    </header>
+
+    <section id="screen-home" class="screen">
+      <div class="hero">
+        <canvas></canvas>
+        <span class="variant-name" data-bind="variant">石榴喔喔</span>
+        <span class="hero-hint">点我换装</span>
+      </div>
+
+      <h1 class="title">喔喔游戏厅</h1>
+      <p class="subtitle">南航计算机学院 · 会写程序的“计算鸡”</p>
+
+      <div class="cards">
+        <a class="card" href="#snake">
+          <span class="card-icon icon-snake">{ }</span>
+          <span class="card-body">
+            <span class="card-name">贪吃喔喔</span>
+            <span class="card-desc">吃石榴、啃代码，躲开 BUG</span>
+          </span>
+          <span class="card-best">
+            <span class="best-label">最高</span>
+            <span class="best-value" data-bind="snakeBest">0</span>
+          </span>
+        </a>
+        <a class="card" href="#link">
+          <span class="card-icon icon-link">喔</span>
+          <span class="card-body">
+            <span class="card-name">喔喔连连看</span>
+            <span class="card-desc">找出相同的喔喔，连线消除</span>
+          </span>
+          <span class="card-best">
+            <span class="best-label">最高</span>
+            <span class="best-value" data-bind="linkBest">0</span>
+          </span>
+        </a>
+      </div>
+
+      <footer class="footer">hello, world</footer>
+    </section>
+
+    <section id="screen-snake" class="screen" hidden>
+      <div class="topbar">
+        <div class="stat"><span class="stat-label">得分</span><span class="stat-value" data-bind="score">0</span></div>
+        <div class="tip" data-bind="tip"></div>
+        <div class="stat"><span class="stat-label">最高</span><span class="stat-value" data-bind="best">0</span></div>
+      </div>
+      <div class="board-wrap">
+        <canvas class="board"></canvas>
+        <div class="overlay"></div>
+      </div>
+      <div class="pad">
+        <div class="pad-row"><button class="pad-btn" data-dir="up" aria-label="上">▲</button></div>
+        <div class="pad-row">
+          <button class="pad-btn" data-dir="left" aria-label="左">◀</button>
+          <button class="pad-btn pad-pause" data-action="togglePause" aria-label="暂停">Ⅱ</button>
+          <button class="pad-btn" data-dir="right" aria-label="右">▶</button>
+        </div>
+        <div class="pad-row"><button class="pad-btn" data-dir="down" aria-label="下">▼</button></div>
+      </div>
+      <p class="keys-hint">方向键 / WASD 控制 · 空格暂停</p>
+    </section>
+
+    <section id="screen-link" class="screen" hidden>
+      <div class="topbar">
+        <div class="stat"><span class="stat-label">关卡</span><span class="stat-value" data-bind="level">1</span></div>
+        <div class="tip" data-bind="tip"></div>
+        <div class="stat"><span class="stat-label">得分</span><span class="stat-value" data-bind="score">0</span></div>
+      </div>
+      <div class="timebar">
+        <div class="timebar-fill"></div>
+        <span class="timebar-text" data-bind="time">0s</span>
+      </div>
+      <div class="board-wrap">
+        <canvas class="board"></canvas>
+        <div class="overlay"></div>
+      </div>
+      <div class="tools">
+        <button class="tool" data-action="useHint">提示 · <span data-bind="hints">3</span></button>
+        <button class="tool" data-action="useShuffle">洗牌 · <span data-bind="shuffles">3</span></button>
+        <button class="tool tool-dark" data-action="togglePause" data-bind="pauseLabel">暂停</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- 与小程序共用的喔喔绘制和连连看规则（CommonJS 写法，这里用 module 垫片接住导出） -->
+  <script>var module = { exports: {} }</script>
+  <script src="utils/wowo.js"></script>
+  <script>window.Wowo = module.exports; module = { exports: {} }</script>
+  <script src="utils/linkPath.js"></script>
+  <script>window.LinkPath = module.exports</script>
+  <script src="app.js"></script>
+</body>
+</html>

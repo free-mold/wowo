@@ -1,0 +1,454 @@
+/* 配色与小程序版一致，见 ../app.wxss */
+:root {
+  --navy: #123A7A;
+  --blue: #0E7BD8;
+  --cyan: #19B5F0;
+  --yellow: #FFD21F;
+  --red: #E8392B;
+  --bg: #F2F8FE;
+  --card: #FFFFFF;
+  --text: #1C2B3A;
+  --muted: #6B7C8F;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  font: inherit;
+  border: none;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.app {
+  max-width: 520px;
+  min-height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+}
+
+.nav-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.nav-back {
+  position: absolute;
+  left: 12px;
+  font-size: 15px;
+  padding: 8px 4px;
+}
+
+.screen {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 首页 */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 260px;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #DDF3FF 0%, #F2F8FE 100%);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.hero canvas {
+  display: block;
+}
+
+.variant-name {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hero-hint {
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.title {
+  margin: 20px 0 0;
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.cards {
+  width: 100%;
+  margin-top: 24px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 10px rgba(18, 58, 122, 0.08);
+  transition: transform 0.1s;
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.icon-snake {
+  background: var(--yellow);
+  color: var(--navy);
+}
+
+.icon-link {
+  background: var(--cyan);
+  color: #fff;
+}
+
+.card-body {
+  flex: 1;
+  margin-left: 12px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-name {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.card-desc {
+  margin-top: 2px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.card-best {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.best-label {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.best-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 24px;
+  font-family: monospace;
+  font-size: 13px;
+  color: #9DB4CC;
+}
+
+/* 游戏页公共 */
+.topbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 64px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.tip {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: var(--blue);
+  font-weight: 600;
+  min-height: 20px;
+}
+
+.board-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(18, 58, 122, 0.12);
+  background: #fff;
+}
+
+.board {
+  display: block;
+  touch-action: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(242, 248, 254, 0.92);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  text-align: center;
+}
+
+.overlay-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.overlay-line {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 24px;
+}
+
+.overlay-score {
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--blue);
+}
+
+.overlay-badge {
+  margin-top: 6px;
+  padding: 2px 12px;
+  border-radius: 999px;
+  background: var(--yellow);
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-primary,
+.btn-ghost {
+  display: inline-block;
+  text-align: center;
+  width: 200px;
+  border-radius: 999px;
+  margin-top: 16px;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 44px;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  font-size: 15px;
+  line-height: 40px;
+  margin-top: 10px;
+}
+
+.btn-primary:active,
+.btn-ghost:active {
+  opacity: 0.8;
+}
+
+/* 贪吃喔喔 */
+.pad {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.pad-row {
+  display: flex;
+  justify-content: center;
+}
+
+.pad-btn {
+  width: 56px;
+  height: 56px;
+  margin: 3px 6px;
+  border-radius: 16px;
+  background: var(--card);
+  box-shadow: 0 2px 8px rgba(18, 58, 122, 0.12);
+  font-size: 20px;
+  color: var(--navy);
+}
+
+.pad-btn:active {
+  background: var(--yellow);
+}
+
+.pad-pause {
+  background: var(--navy);
+  color: #fff;
+  font-size: 18px;
+}
+
+.keys-hint {
+  display: none;
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* 有鼠标键盘的设备：隐藏方向键，显示键盘提示 */
+@media (hover: hover) and (pointer: fine) {
+  .pad {
+    display: none;
+  }
+
+  .keys-hint {
+    display: block;
+  }
+}
+
+/* 连连看 */
+.timebar {
+  position: relative;
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  background: #DCE8F4;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.timebar-fill {
+  height: 100%;
+  width: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  transition: width 0.3s linear;
+}
+
+.timebar-fill.danger {
+  background: var(--red);
+}
+
+.timebar-text {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  font-size: 10px;
+  line-height: 14px;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.tools {
+  display: flex;
+  margin-top: 16px;
+}
+
+.tool {
+  margin: 0 6px;
+  padding: 0 18px;
+  line-height: 40px;
+  border-radius: 999px;
+  background: var(--card);
+  box-shadow: 0 2px 8px rgba(18, 58, 122, 0.12);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.tool:active {
+  background: var(--yellow);
+}
+
+.tool.disabled {
+  opacity: 0.4;
+}
+
+.tool-dark {
+  background: var(--navy);
+  color: #fff;
+}
